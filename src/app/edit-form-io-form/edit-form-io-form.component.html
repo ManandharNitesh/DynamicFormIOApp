@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="sidebar">
+    <button class="btn primary" (click)="createNewForm('form')">Add Form</button>
+    <button class="btn accent" (click)="createNewForm('pdf')">Add PDF</button>
+
+    <div class="form-list">
+      <h3>My Forms</h3>
+      <ul>
+        <li *ngFor="let form of forms" (click)="loadForm(form)">
+          {{ form.title || 'Untitled Form' }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="editor">
+    <div *ngIf="showAll" class="form-meta">
+      <div class="input-row">
+        <label for="title">Title:</label>
+        <input type="text" id="title" [(ngModel)]="formTitle" (ngModelChange)="onTitleChange()" placeholder="Enter form title">
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" [(ngModel)]="formName" disabled placeholder="Form name will auto-populate">
+
+        <label for="path">Path:</label>
+        <input type="text" id="path" [(ngModel)]="formPath" disabled placeholder="Form path will auto-populate">
+      </div>
+    </div>
+
+    <div  id="formio-builder"></div>
+    <!-- (click)="saveForm()" -->
+    <button id="save-FormIO-button"  class="btn primary" *ngIf="selectedFormSchema" >Save Form</button>
+  </div>
+</div>
